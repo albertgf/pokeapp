@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 public class PreferenceSource {
 
     private static String PREFS_KEY_FIRST_TIME = "prefsKeyFirstTime";
+    private static String PREFS_KEY_MALE = "prefsKeyMale";
 
     private Context mContext;
     private SharedPreferences.Editor mEditor;
@@ -49,12 +50,18 @@ public class PreferenceSource {
     }
 
     public boolean isFirstTime() {
-        boolean value = getPreferences().getBoolean(PREFS_KEY_FIRST_TIME, true);
-        return value;
+        return getPreferences().getBoolean(PREFS_KEY_FIRST_TIME, true);
     }
 
     public void setFirstTime(boolean value) {
         saveInSharedPreferences(PREFS_KEY_FIRST_TIME, value);
     }
 
+    public boolean isMale() {
+        return getPreferences().getBoolean(PREFS_KEY_MALE, true);
+    }
+
+    public void setMale(boolean isMale) {
+        saveInSharedPreferences(PREFS_KEY_MALE, isMale);
+    }
 }
