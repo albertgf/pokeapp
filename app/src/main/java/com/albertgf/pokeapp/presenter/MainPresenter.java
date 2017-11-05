@@ -5,6 +5,8 @@ import com.albertgf.domain.usecase.DefaultCallback;
 import com.albertgf.domain.usecase.GetPokemonUseCase;
 import com.albertgf.pokeapp.di.PerActivity;
 
+import java.util.Random;
+
 import javax.inject.Inject;
 
 /**
@@ -16,6 +18,8 @@ public class MainPresenter implements Presenter {
     private final GetPokemonUseCase pokemonUseCase;
     private View view;
 
+    private PokemonModelView pokemon;
+
     @Inject
     public MainPresenter(GetPokemonUseCase pokemonUseCase) {
         this.pokemonUseCase = pokemonUseCase;
@@ -23,21 +27,33 @@ public class MainPresenter implements Presenter {
 
     @Override public void onViewAttached(PresenterView view, boolean isNew) {
         this.view = (View) view;
-        pokemonUseCase.execute(new GetPokemonCallback(), GetPokemonUseCase.Params.forPokemon(0));
     }
 
     @Override public void onViewDetached() {
 
     }
 
-    public interface View extends PresenterView {
+    public void searchPokemon() {
+        pokemonUseCase.execute(new GetPokemonCallback(), GetPokemonUseCase.Params.forPokemon(new Random().nextInt
+                (1000)));
+    }
 
+    public void leavePokemon() {
+        pokemon = null;
+    }
+
+    public void catchPokemon() {
+        //TODO catchPokemonUseCase.execute();
+    }
+
+    public interface View extends PresenterView {
+        void bindPokemon(PokemonModelView pokemon);
     }
 
     private class GetPokemonCallback extends DefaultCallback<PokemonModelView> {
         @Override
-        public void onNext(PokemonModelView pokemon) {
-
+        public void onNext(PokemonModelView pokemonModel) {
+            pokemon = pokemonModel;
         }
 
         @Override

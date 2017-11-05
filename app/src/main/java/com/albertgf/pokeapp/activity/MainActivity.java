@@ -10,13 +10,14 @@ import com.albertgf.pokeapp.R;
 import com.albertgf.pokeapp.di.components.DaggerBaseComponent;
 import com.albertgf.pokeapp.di.components.BaseComponent;
 import com.albertgf.pokeapp.presenter.GenderPresenter;
+import com.albertgf.pokeapp.presenter.MainPresenter;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements GenderPresenter.View {
+public class MainActivity extends BaseActivity implements MainPresenter.View {
 
     private static final int TIME_DELAY = 2000;
 
@@ -36,7 +37,7 @@ public class MainActivity extends BaseActivity implements GenderPresenter.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_main);
 
         initInjector();
     }
@@ -65,26 +66,25 @@ public class MainActivity extends BaseActivity implements GenderPresenter.View {
     // ********** CLICK LISTENERS *****************
     // ********************************************
 
-    @OnClick({R.id.act_gender_iv_male, R.id.act_gender_iv_female})
-    public void onGenderClick(View view) {
-        ivFemale.setSelected(false);
-        ivMale.setSelected(false);
-        btnStart.setSelected(true);
-
-        switch (view.getId()) {
-            case R.id.act_gender_iv_male:
-                ivMale.setSelected(true);
-                break;
-            case R.id.act_gender_iv_female:
-                ivFemale.setSelected(true);
-        }
+    @OnClick(R.id.act_main_tv_leave)
+    public void onLeaveClick() {
+        // TODO presenter.leavePokemon();
     }
 
-    @OnClick(R.id.act_gender_btn_start)
-    public void onStartClick() {
-        if(btnStart.isSelected()) presenter.setGender(this, ivMale.isSelected());
+    @OnClick(R.id.act_main_tv_catch)
+    public void onCatchClick() {
+        // TODO presenter.catchPokemon();
     }
 
+    @OnClick(R.id.act_main_tv_search)
+    public void onSearchClick() {
+        // TODO presenter.searchPokemon();
+    }
+
+    @OnClick(R.id.act_main_iv_backpack)
+    public void onBackpackClick() {
+        // TODO navigator.navigateToBackpack();
+    }
 
     // ******************************************
     // ********** VIEW CALLBACK *****************
@@ -92,9 +92,5 @@ public class MainActivity extends BaseActivity implements GenderPresenter.View {
 
     @Override public void onError(String text) {
 
-    }
-
-    @Override public void navigateToMain() {
-        navigator.navigateToMain(this);
     }
 }
