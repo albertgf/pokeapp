@@ -53,7 +53,9 @@ public class PokemonDataMapper {
             domain.setOrder(disk.getOrder());
             domain.setSpriteFront(disk.getSpriteFront());
             domain.setSpriteBack(disk.getSpriteBack());
-            domain.setTypes(disk.getTypes());
+            List<String> types = new ArrayList<String>();
+            types.addAll(disk.getTypes());
+            domain.setTypes(types);
             domain.setCatched(disk.isCatched());
         }
 

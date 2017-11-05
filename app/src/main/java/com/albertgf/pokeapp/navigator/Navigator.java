@@ -3,6 +3,7 @@ package com.albertgf.pokeapp.navigator;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.albertgf.pokeapp.activity.DetailActivity;
 import com.albertgf.pokeapp.activity.GenderActivity;
 import com.albertgf.pokeapp.activity.ListActivity;
 import com.albertgf.pokeapp.activity.MainActivity;
@@ -31,6 +32,13 @@ public class Navigator {
     public void navigateToList(Activity context) {
         if (context != null) {
             Intent intentToLaunch = ListActivity.getCallingIntent(context);
+            context.startActivity(intentToLaunch);
+        }
+    }
+
+    public void navigateToDetail(Activity context, int id, String url) {
+        if (context != null) {
+            Intent intentToLaunch = DetailActivity.getCallingIntent(context, id, url);
             context.startActivity(intentToLaunch);
         }
     }

@@ -100,7 +100,7 @@ public class ListActivity extends BaseActivity implements ListPresenter.View, It
 
     @Override public void onItemClick(@NonNull PokemonModelView item,
                                       @NonNull DefaultViewHolder<PokemonModelView> viewHolder, @NonNull View view) {
-        Toast.makeText(this, item.getName(), Toast.LENGTH_SHORT).show();
+       navigator.navigateToDetail(this, item.getId(), item.getSpriteFront());
     }
 
     // ******************************************

@@ -1,5 +1,6 @@
 package com.albertgf.pokeapp.di.components;
 
+import com.albertgf.pokeapp.activity.DetailActivity;
 import com.albertgf.pokeapp.activity.GenderActivity;
 import com.albertgf.pokeapp.activity.ListActivity;
 import com.albertgf.pokeapp.activity.MainActivity;
@@ -20,4 +21,5 @@ public interface BaseComponent {
     void inject(GenderActivity activity);
     void inject(MainActivity activity);
     void inject(ListActivity activity);
+    void inject(DetailActivity activity);
 }

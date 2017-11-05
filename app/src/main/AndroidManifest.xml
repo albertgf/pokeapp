@@ -20,12 +20,16 @@
 
         <activity android:name=".activity.GenderActivity"
                   android:noHistory="true"
+                  android:screenOrientation="portrait"
                   />
         <activity android:name=".activity.MainActivity"
-                  android:noHistory="true"
+                  android:screenOrientation="portrait"
             />
         <activity android:name=".activity.ListActivity"
-                  android:noHistory="true"
+                  android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.DetailActivity"
+                  android:screenOrientation="portrait"
             />
     </application>
 
