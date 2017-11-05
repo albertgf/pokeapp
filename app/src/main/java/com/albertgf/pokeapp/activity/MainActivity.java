@@ -108,4 +108,10 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
     @Override public void showNotFoundError() {
         Toast.makeText(this, "NOT FOUND", Toast.LENGTH_SHORT).show();
     }
+
+    @Override public void showCatched() {
+        Toast.makeText(this, "CATCHED!!!", Toast.LENGTH_SHORT).show();
+        hidePokemon();
+    }
+
 }

@@ -9,4 +9,5 @@ import com.albertgf.domain.usecase.DefaultCallback;
 
 public interface PokemonRepository {
     void getPokemonById(int id, DefaultCallback<PokemonModelView> callback);
+    void catchPokemon(PokemonModelView pokemon, DefaultCallback<Object> callback);
 }

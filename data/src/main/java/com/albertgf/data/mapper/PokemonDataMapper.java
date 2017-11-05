@@ -31,20 +31,9 @@ public class PokemonDataMapper {
             domain.setHeight(api.getHeight());
             domain.setWeight(api.getWeight());
             domain.setOrder(api.getOrder());
-            domain.setSprites(transform(api.getSprites()));
+            domain.setSpriteFront(api.getSprites().getFrontDefault());
+            domain.setSpriteBack(api.getSprites().getBackDefault());
             domain.setTypes(transform(api.getTypes()));
-        }
-
-        return domain;
-    }
-
-    private PokemonSpritesModelView transform(ApiModelPokemonSprites api) {
-        PokemonSpritesModelView domain = new PokemonSpritesModelView();
-
-        if (api != null) {
-            domain.setBackDefault(api.getBackDefault());
-            domain.setFrontDefault(api.getFrontDefault());
-
         }
 
         return domain;

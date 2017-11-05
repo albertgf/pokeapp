@@ -1,21 +1,28 @@
-package com.albertgf.domain.model;
+package com.albertgf.data.model;
+
+import com.albertgf.domain.model.PokemonSpritesModelView;
 
 import java.util.List;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
- * Created by albertgf on 4/11/17.
+ * Created by albertgf on 5/11/17.
  */
 
-public class PokemonModelView {
+public class PokemonDisk extends RealmObject {
+    @PrimaryKey
+    private Integer id;
     private String name;
     private Integer weight;
     private String spriteFront;
     private String spriteBack;
     private Integer height;
-    private Integer id;
     private Integer order;
     private Integer baseExperience;
-    private List<String> types = null;
+    private RealmList<String> types = null;
     private boolean isCatched = false;
 
     public String getName() {
@@ -86,7 +93,7 @@ public class PokemonModelView {
         return types;
     }
 
-    public void setTypes(List<String> types) {
+    public void setTypes(RealmList<String> types) {
         this.types = types;
     }
 

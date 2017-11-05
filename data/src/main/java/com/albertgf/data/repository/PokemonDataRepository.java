@@ -46,4 +46,11 @@ public class PokemonDataRepository implements PokemonRepository {
             callback.onError(e);
         }
     }
+
+    @Override public void catchPokemon(PokemonModelView pokemon, DefaultCallback<Object> callback) {
+        final DiskDataSource diskDataSource = this.dataSource.createDiskDataSource();
+
+        diskDataSource.savePokemon(pokemon);
+        callback.onNext(null);
+    }
 }

@@ -2,6 +2,8 @@ package com.albertgf.data.datasource;
 
 import android.content.Context;
 
+import com.albertgf.domain.model.PokemonModelView;
+
 /**
  * Created by albertgf on 4/11/17.
  */
@@ -9,4 +11,6 @@ import android.content.Context;
 public interface DiskDataSource {
     Context getContext();
     void closeDisk();
+
+    void savePokemon(PokemonModelView pokemon);
 }

@@ -2,6 +2,9 @@ package com.albertgf.data.datasource;
 
 import android.content.Context;
 
+import com.albertgf.data.mapper.DiskMapper;
+import com.albertgf.domain.model.PokemonModelView;
+
 import io.realm.Realm;
 
 /**
@@ -26,5 +29,11 @@ public class DiskDataSourceImpl implements DiskDataSource{
         if (realm != null) {
             realm.close();
         }
+    }
+
+    @Override public void savePokemon(PokemonModelView pokemon) {
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(DiskMapper.buildHealthInfoDiskModel(pokemon));
+        realm.commitTransaction();
     }
 }

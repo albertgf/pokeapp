@@ -52,6 +52,6 @@ public class PokemonView extends LinearLayout {
         tvName.setText(pokemon.getName());
         tvHeight.setText(String.format("%d",pokemon.getHeight()));
         tvWeight.setText(String.format("%d",pokemon.getWeight()));
-        Glide.with(this).load(pokemon.getSprites().getFrontDefault()).into(ivPokemon);
+        Glide.with(this).load(pokemon.getSpriteFront()).into(ivPokemon);
     }
 }
