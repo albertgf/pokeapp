@@ -6,29 +6,23 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import com.albertgf.domain.model.PokemonModelView;
 import com.albertgf.pokeapp.R;
-import com.albertgf.pokeapp.di.components.DaggerBaseComponent;
 import com.albertgf.pokeapp.di.components.BaseComponent;
-import com.albertgf.pokeapp.presenter.GenderPresenter;
+import com.albertgf.pokeapp.di.components.DaggerBaseComponent;
 import com.albertgf.pokeapp.presenter.MainPresenter;
+import com.bumptech.glide.Glide;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View {
 
-    private static final int TIME_DELAY = 2000;
-
-    @BindView(R.id.act_gender_iv_female) View ivFemale;
-    @BindView(R.id.act_gender_iv_male) View ivMale;
-    @BindView(R.id.act_gender_btn_start) View btnStart;
-
-    @Inject GenderPresenter presenter;
+    @Inject MainPresenter presenter;
     private BaseComponent component;
-
-    private Handler mHandler = new Handler();
 
     public static Intent getCallingIntent(Context context) {
         return new Intent(context, MainActivity.class);
@@ -38,6 +32,8 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
 
         initInjector();
     }
@@ -66,22 +62,22 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
     // ********** CLICK LISTENERS *****************
     // ********************************************
 
-    @OnClick(R.id.act_main_tv_leave)
+    @OnClick (R.id.act_main_tv_leave)
     public void onLeaveClick() {
         // TODO presenter.leavePokemon();
     }
 
-    @OnClick(R.id.act_main_tv_catch)
+    @OnClick (R.id.act_main_tv_catch)
     public void onCatchClick() {
         // TODO presenter.catchPokemon();
     }
 
-    @OnClick(R.id.act_main_tv_search)
+    @OnClick (R.id.act_main_tv_search)
     public void onSearchClick() {
-        // TODO presenter.searchPokemon();
+        presenter.searchPokemon();
     }
 
-    @OnClick(R.id.act_main_iv_backpack)
+    @OnClick (R.id.act_main_iv_backpack)
     public void onBackpackClick() {
         // TODO navigator.navigateToBackpack();
     }
@@ -92,5 +88,9 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
 
     @Override public void onError(String text) {
 
+    }
+
+    @Override public void bindPokemon(PokemonModelView pokemon) {
+        Glide.with(this).load(pokemon.getSprites().getFrontDefault()).into(ivPokemon);
     }
 }
