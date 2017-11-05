@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
         cvPokemon.setVisibility(View.VISIBLE);
         vgPokemonAction.setVisibility(View.VISIBLE);
         cvPokemon.bindData(pokemon);
-        tvCatch.setVisibility(View.GONE);
+        tvCatch.setVisibility(pokemon.isCatched() ? View.GONE : View.VISIBLE);
     }
 
     @Override public void hidePokemon() {

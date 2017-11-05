@@ -48,13 +48,13 @@ public class PokemonDataRepository implements PokemonRepository {
         final DiskDataSource diskDataSource = this.dataSource.createDiskDataSource();
         final CloudDataSource cloudDataSource = this.dataSource.createCloudDataStore();
 
-        PokemonDisk pokemonDisk = diskDataSource.getPokemon(1);
+        PokemonDisk pokemonDisk = diskDataSource.getPokemon(id);
         if (pokemonDisk != null) {
             callback.onNext(dataMapper.transform(pokemonDisk));
             return;
         }
         try {
-            ApiModelPokemon pokemon = cloudDataSource.getPokemon(1);
+            ApiModelPokemon pokemon = cloudDataSource.getPokemon(id);
             callback.onNext(dataMapper.transform(pokemon));
         } catch (ServerApiException | NetworkApiException | NotFoundApiException e) {
             callback.onError(e);

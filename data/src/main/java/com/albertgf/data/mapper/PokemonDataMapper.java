@@ -27,6 +27,7 @@ public class PokemonDataMapper {
         PokemonModelView domain = new PokemonModelView();
 
         if (api != null) {
+            domain.setId(api.getId());
             domain.setName(api.getName());
             domain.setBaseExperience(api.getBaseExperience());
             domain.setHeight(api.getHeight());
@@ -44,6 +45,7 @@ public class PokemonDataMapper {
         PokemonModelView domain = new PokemonModelView();
 
         if (disk != null) {
+            domain.setId(disk.getId());
             domain.setName(disk.getName());
             domain.setBaseExperience(disk.getBaseExperience());
             domain.setHeight(disk.getHeight());

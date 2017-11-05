@@ -31,7 +31,6 @@ public class Navigator {
     public void navigateToList(Activity context) {
         if (context != null) {
             Intent intentToLaunch = ListActivity.getCallingIntent(context);
-            intentToLaunch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             context.startActivity(intentToLaunch);
         }
     }
