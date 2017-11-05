@@ -5,6 +5,8 @@ import android.content.Context;
 import com.albertgf.data.model.PokemonDisk;
 import com.albertgf.domain.model.PokemonModelView;
 
+import io.realm.RealmResults;
+
 /**
  * Created by albertgf on 4/11/17.
  */
@@ -15,4 +17,5 @@ public interface DiskDataSource {
 
     void savePokemon(PokemonModelView pokemon);
     PokemonDisk getPokemon(int id);
+    RealmResults<PokemonDisk> getPokemons();
 }

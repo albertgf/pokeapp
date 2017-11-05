@@ -8,6 +8,7 @@ import com.albertgf.data.model.PokemonDisk;
 import com.albertgf.domain.model.PokemonModelView;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by albertgf on 4/11/17.
@@ -41,5 +42,9 @@ public class DiskDataSourceImpl implements DiskDataSource{
 
     @Override public PokemonDisk getPokemon(int id) {
         return realm.where(PokemonDisk.class).equalTo("id", id).findFirst();
+    }
+
+    @Override public RealmResults<PokemonDisk> getPokemons() {
+        return realm.where(PokemonDisk.class).findAllSorted("order");
     }
 }

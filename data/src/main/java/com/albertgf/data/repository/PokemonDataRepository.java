@@ -13,6 +13,8 @@ import com.albertgf.domain.model.PokemonModelView;
 import com.albertgf.domain.repository.PokemonRepository;
 import com.albertgf.domain.usecase.DefaultCallback;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -34,6 +36,12 @@ public class PokemonDataRepository implements PokemonRepository {
 
         this.dataSource = dataStore;
         this.dataMapper = dataMapper;
+    }
+
+    @Override public void getPokemons(DefaultCallback<List<PokemonModelView>> callback) {
+        final DiskDataSource diskDataSource = this.dataSource.createDiskDataSource();
+
+        callback.onNext(dataMapper.transform(diskDataSource.getPokemons()));
     }
 
     @Override public void getPokemonById(int id, DefaultCallback<PokemonModelView> callback) {

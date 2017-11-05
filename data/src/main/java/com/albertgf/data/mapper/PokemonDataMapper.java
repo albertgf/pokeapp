@@ -1,17 +1,17 @@
 package com.albertgf.data.mapper;
 
 import com.albertgf.apiclient.model.ApiModelPokemon;
-import com.albertgf.apiclient.model.ApiModelPokemonSprites;
 import com.albertgf.apiclient.model.ApiModelPokemonTypes;
 import com.albertgf.data.model.PokemonDisk;
 import com.albertgf.domain.model.PokemonModelView;
-import com.albertgf.domain.model.PokemonSpritesModelView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import io.realm.RealmResults;
 
 /**
  * Created by albertgf on 5/11/17.
@@ -62,8 +62,20 @@ public class PokemonDataMapper {
         List<String> domain = new ArrayList<>();
 
         if (types != null) {
-            for(ApiModelPokemonTypes type : types) {
+            for (ApiModelPokemonTypes type : types) {
                 domain.add(type.getType().getName());
+            }
+        }
+
+        return domain;
+    }
+
+    public List<PokemonModelView> transform(RealmResults<PokemonDisk> disk) {
+        List<PokemonModelView> domain = new ArrayList<>();
+
+        if (disk != null) {
+            for (PokemonDisk pokemon : disk) {
+                domain.add(transform(pokemon));
             }
         }
 

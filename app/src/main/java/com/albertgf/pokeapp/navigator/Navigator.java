@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.albertgf.pokeapp.activity.GenderActivity;
+import com.albertgf.pokeapp.activity.ListActivity;
 import com.albertgf.pokeapp.activity.MainActivity;
 
 /**
@@ -22,6 +23,14 @@ public class Navigator {
     public void navigateToGender(Activity context) {
         if (context != null) {
             Intent intentToLaunch = GenderActivity.getCallingIntent(context);
+            intentToLaunch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            context.startActivity(intentToLaunch);
+        }
+    }
+
+    public void navigateToList(Activity context) {
+        if (context != null) {
+            Intent intentToLaunch = ListActivity.getCallingIntent(context);
             intentToLaunch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             context.startActivity(intentToLaunch);
         }

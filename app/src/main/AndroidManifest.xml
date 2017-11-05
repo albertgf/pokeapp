@@ -24,6 +24,9 @@
         <activity android:name=".activity.MainActivity"
                   android:noHistory="true"
             />
+        <activity android:name=".activity.ListActivity"
+                  android:noHistory="true"
+            />
     </application>
 
 </manifest>
