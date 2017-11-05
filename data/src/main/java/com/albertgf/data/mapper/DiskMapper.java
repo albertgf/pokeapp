@@ -23,7 +23,7 @@ public class DiskMapper {
             disk.setSpriteBack(model.getSpriteBack());
             disk.setSpriteFront(model.getSpriteFront());
             disk.setOrder(model.getOrder());
-            disk.setTypes((RealmList<String>) model.getTypes());
+            disk.setTypes(new RealmList<String>(model.getTypes().toArray(new String[model.getTypes().size()])));
         }
 
         return disk;

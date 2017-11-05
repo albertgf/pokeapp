@@ -3,6 +3,7 @@ package com.albertgf.data.mapper;
 import com.albertgf.apiclient.model.ApiModelPokemon;
 import com.albertgf.apiclient.model.ApiModelPokemonSprites;
 import com.albertgf.apiclient.model.ApiModelPokemonTypes;
+import com.albertgf.data.model.PokemonDisk;
 import com.albertgf.domain.model.PokemonModelView;
 import com.albertgf.domain.model.PokemonSpritesModelView;
 
@@ -34,6 +35,24 @@ public class PokemonDataMapper {
             domain.setSpriteFront(api.getSprites().getFrontDefault());
             domain.setSpriteBack(api.getSprites().getBackDefault());
             domain.setTypes(transform(api.getTypes()));
+        }
+
+        return domain;
+    }
+
+    public PokemonModelView transform(PokemonDisk disk) {
+        PokemonModelView domain = new PokemonModelView();
+
+        if (disk != null) {
+            domain.setName(disk.getName());
+            domain.setBaseExperience(disk.getBaseExperience());
+            domain.setHeight(disk.getHeight());
+            domain.setWeight(disk.getWeight());
+            domain.setOrder(disk.getOrder());
+            domain.setSpriteFront(disk.getSpriteFront());
+            domain.setSpriteBack(disk.getSpriteBack());
+            domain.setTypes(disk.getTypes());
+            domain.setCatched(disk.isCatched());
         }
 
         return domain;

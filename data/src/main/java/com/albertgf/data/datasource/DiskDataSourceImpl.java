@@ -3,6 +3,8 @@ package com.albertgf.data.datasource;
 import android.content.Context;
 
 import com.albertgf.data.mapper.DiskMapper;
+import com.albertgf.data.mapper.PokemonDataMapper;
+import com.albertgf.data.model.PokemonDisk;
 import com.albertgf.domain.model.PokemonModelView;
 
 import io.realm.Realm;
@@ -35,5 +37,9 @@ public class DiskDataSourceImpl implements DiskDataSource{
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(DiskMapper.buildHealthInfoDiskModel(pokemon));
         realm.commitTransaction();
+    }
+
+    @Override public PokemonDisk getPokemon(int id) {
+        return realm.where(PokemonDisk.class).equalTo("id", id).findFirst();
     }
 }

@@ -8,6 +8,7 @@ import com.albertgf.data.datasource.CloudDataSource;
 import com.albertgf.data.datasource.DataSourceFactory;
 import com.albertgf.data.datasource.DiskDataSource;
 import com.albertgf.data.mapper.PokemonDataMapper;
+import com.albertgf.data.model.PokemonDisk;
 import com.albertgf.domain.model.PokemonModelView;
 import com.albertgf.domain.repository.PokemonRepository;
 import com.albertgf.domain.usecase.DefaultCallback;
@@ -39,8 +40,13 @@ public class PokemonDataRepository implements PokemonRepository {
         final DiskDataSource diskDataSource = this.dataSource.createDiskDataSource();
         final CloudDataSource cloudDataSource = this.dataSource.createCloudDataStore();
 
+        PokemonDisk pokemonDisk = diskDataSource.getPokemon(1);
+        if (pokemonDisk != null) {
+            callback.onNext(dataMapper.transform(pokemonDisk));
+            return;
+        }
         try {
-            ApiModelPokemon pokemon = cloudDataSource.getPokemon(id);
+            ApiModelPokemon pokemon = cloudDataSource.getPokemon(1);
             callback.onNext(dataMapper.transform(pokemon));
         } catch (ServerApiException | NetworkApiException | NotFoundApiException e) {
             callback.onError(e);

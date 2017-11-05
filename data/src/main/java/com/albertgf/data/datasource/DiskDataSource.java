@@ -2,6 +2,7 @@ package com.albertgf.data.datasource;
 
 import android.content.Context;
 
+import com.albertgf.data.model.PokemonDisk;
 import com.albertgf.domain.model.PokemonModelView;
 
 /**
@@ -13,4 +14,5 @@ public interface DiskDataSource {
     void closeDisk();
 
     void savePokemon(PokemonModelView pokemon);
+    PokemonDisk getPokemon(int id);
 }
