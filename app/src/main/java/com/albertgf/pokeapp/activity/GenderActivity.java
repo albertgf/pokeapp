@@ -14,11 +14,10 @@ import com.albertgf.pokeapp.presenter.GenderPresenter;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class GenderActivity extends BaseActivity implements GenderPresenter.View {
-
-    private static final int TIME_DELAY = 2000;
 
     @BindView(R.id.act_gender_iv_female) View ivFemale;
     @BindView(R.id.act_gender_iv_male) View ivMale;
@@ -27,8 +26,6 @@ public class GenderActivity extends BaseActivity implements GenderPresenter.View
     @Inject GenderPresenter presenter;
     private BaseComponent component;
 
-    private Handler mHandler = new Handler();
-
     public static Intent getCallingIntent(Context context) {
         return new Intent(context, GenderActivity.class);
     }
@@ -36,7 +33,9 @@ public class GenderActivity extends BaseActivity implements GenderPresenter.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_gender);
+
+        ButterKnife.bind(this);
 
         initInjector();
     }

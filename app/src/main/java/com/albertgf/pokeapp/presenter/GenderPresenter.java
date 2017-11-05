@@ -31,6 +31,7 @@ public class GenderPresenter implements Presenter {
 
     public  void setGender(Context context, boolean isMale) {
         PreferenceSource.getInstance(context).setMale(isMale);
+        PreferenceSource.getInstance(context).setFirstTime(false);
 
         view.navigateToMain();
     }
