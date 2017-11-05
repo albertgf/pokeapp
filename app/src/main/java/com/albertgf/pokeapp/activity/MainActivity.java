@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.albertgf.domain.model.PokemonModelView;
@@ -22,6 +23,7 @@ import butterknife.OnClick;
 public class MainActivity extends BaseActivity implements MainPresenter.View {
 
     @BindView (R.id.act_main_cv_pokemon) PokemonView cvPokemon;
+    @BindView (R.id.act_main_container_action) ViewGroup vgPokemonAction;
 
     @Inject MainPresenter presenter;
     private BaseComponent component;
@@ -94,11 +96,13 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
 
     @Override public void bindPokemon(PokemonModelView pokemon) {
         cvPokemon.setVisibility(View.VISIBLE);
+        vgPokemonAction.setVisibility(View.VISIBLE);
         cvPokemon.bindData(pokemon);
     }
 
     @Override public void hidePokemon() {
         cvPokemon.setVisibility(View.GONE);
+        vgPokemonAction.setVisibility(View.GONE);
     }
 
     @Override public void showNotFoundError() {
