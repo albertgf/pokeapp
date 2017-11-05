@@ -54,6 +54,7 @@ public class MainPresenter implements Presenter {
         @Override
         public void onNext(PokemonModelView pokemonModel) {
             pokemon = pokemonModel;
+            view.bindPokemon(pokemon);
         }
 
         @Override
