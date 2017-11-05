@@ -1,6 +1,7 @@
 package com.albertgf.data.repository;
 
 import com.albertgf.apiclient.exception.NetworkApiException;
+import com.albertgf.apiclient.exception.NotFoundApiException;
 import com.albertgf.apiclient.exception.ServerApiException;
 import com.albertgf.apiclient.model.ApiModelPokemon;
 import com.albertgf.data.datasource.CloudDataSource;
@@ -41,7 +42,7 @@ public class PokemonDataRepository implements PokemonRepository {
         try {
             ApiModelPokemon pokemon = cloudDataSource.getPokemon(id);
             callback.onNext(dataMapper.transform(pokemon));
-        } catch (ServerApiException | NetworkApiException e) {
+        } catch (ServerApiException | NetworkApiException | NotFoundApiException e) {
             callback.onError(e);
         }
     }

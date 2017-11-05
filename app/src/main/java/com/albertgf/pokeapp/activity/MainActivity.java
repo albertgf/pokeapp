@@ -3,10 +3,8 @@ package com.albertgf.pokeapp.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.Html;
-import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.albertgf.domain.model.PokemonModelView;
 import com.albertgf.pokeapp.R;
@@ -23,7 +21,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View {
 
-    @BindView(R.id.act_main_iv_pokemon) ImageView ivPokemon;
+    @BindView (R.id.act_main_iv_pokemon) ImageView ivPokemon;
 
     @Inject MainPresenter presenter;
     private BaseComponent component;
@@ -96,5 +94,9 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
 
     @Override public void bindPokemon(PokemonModelView pokemon) {
         Glide.with(this).load(pokemon.getSprites().getFrontDefault()).into(ivPokemon);
+    }
+
+    @Override public void showNotFoundError() {
+        Toast.makeText(this, "NOT FOUND", Toast.LENGTH_SHORT).show();
     }
 }

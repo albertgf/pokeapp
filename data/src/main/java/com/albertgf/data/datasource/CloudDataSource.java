@@ -1,6 +1,7 @@
 package com.albertgf.data.datasource;
 
 import com.albertgf.apiclient.exception.NetworkApiException;
+import com.albertgf.apiclient.exception.NotFoundApiException;
 import com.albertgf.apiclient.exception.ServerApiException;
 import com.albertgf.apiclient.model.ApiModelPokemon;
 
@@ -9,5 +10,5 @@ import com.albertgf.apiclient.model.ApiModelPokemon;
  */
 
 public interface CloudDataSource {
-    ApiModelPokemon getPokemon(int id) throws ServerApiException, NetworkApiException;
+    ApiModelPokemon getPokemon(int id) throws ServerApiException, NetworkApiException, NotFoundApiException;
 }

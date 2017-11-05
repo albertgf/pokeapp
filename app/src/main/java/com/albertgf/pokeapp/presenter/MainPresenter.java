@@ -1,5 +1,6 @@
 package com.albertgf.pokeapp.presenter;
 
+import com.albertgf.apiclient.exception.ApiException;
 import com.albertgf.domain.model.PokemonModelView;
 import com.albertgf.domain.usecase.DefaultCallback;
 import com.albertgf.domain.usecase.GetPokemonUseCase;
@@ -8,6 +9,8 @@ import com.albertgf.pokeapp.di.PerActivity;
 import java.util.Random;
 
 import javax.inject.Inject;
+
+import static com.albertgf.apiclient.Constants.CODE_NOT_FOUND;
 
 /**
  * Created by albertgf on 4/11/17.
@@ -48,6 +51,7 @@ public class MainPresenter implements Presenter {
 
     public interface View extends PresenterView {
         void bindPokemon(PokemonModelView pokemon);
+        void showNotFoundError();
     }
 
     private class GetPokemonCallback extends DefaultCallback<PokemonModelView> {
@@ -65,7 +69,12 @@ public class MainPresenter implements Presenter {
 
         @Override
         public void onError(Throwable exception) {
-            super.onError(exception);
+            ApiException api = (ApiException) exception;
+
+            switch (api.getHttpCode()) {
+                case CODE_NOT_FOUND:
+                    view.showNotFoundError();
+            }
         }
     }
 }

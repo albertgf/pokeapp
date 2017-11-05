@@ -1,6 +1,7 @@
 package com.albertgf.apiclient.api;
 
 import com.albertgf.apiclient.exception.NetworkApiException;
+import com.albertgf.apiclient.exception.NotFoundApiException;
 import com.albertgf.apiclient.exception.ServerApiException;
 import com.albertgf.apiclient.model.ApiModelPokemon;
 
@@ -9,5 +10,5 @@ import com.albertgf.apiclient.model.ApiModelPokemon;
  */
 
 public interface ApiPokemon {
-    ApiModelPokemon getPokemon(int id) throws NetworkApiException, ServerApiException;
+    ApiModelPokemon getPokemon(int id) throws NetworkApiException, ServerApiException, NotFoundApiException;
 }

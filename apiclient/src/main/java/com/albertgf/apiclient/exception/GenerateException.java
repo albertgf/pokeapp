@@ -14,4 +14,9 @@ public class GenerateException {
     public static void manageError(Exception exception) throws ApiException {
         throw new ApiException("Gson error", exception);
     }
+
+    public static void manageNotFoundError(int code) throws NotFoundApiException {
+        throw new NotFoundApiException(code, "", new Exception
+                ());
+    }
 }
