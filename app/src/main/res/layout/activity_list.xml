@@ -5,6 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pokeAppPrimary"
-    tools:context="com.albertgf.pokeapp.activity.SplashActivity">
+    tools:context="com.albertgf.pokeapp.activity.ListActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvPokemons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>
