@@ -21,8 +21,6 @@ import com.albertgf.pokeapp.di.components.BaseComponent;
 import com.albertgf.pokeapp.di.components.DaggerBaseComponent;
 import com.albertgf.pokeapp.holder.PokemonHolder;
 import com.albertgf.pokeapp.presenter.ListPresenter;
-import com.albertgf.pokeapp.presenter.MainPresenter;
-import com.albertgf.pokeapp.view.PokemonView;
 
 import java.util.List;
 
@@ -30,7 +28,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ListActivity extends BaseActivity implements ListPresenter.View, ItemClickListener<PokemonModelView> {
 
@@ -85,7 +82,7 @@ public class ListActivity extends BaseActivity implements ListPresenter.View, It
                             ViewGroup parent,
                             int viewType) {
                         LayoutInflater inflater = LayoutInflater.from(ListActivity.this);
-                        View view= inflater.inflate(R.layout.cell_view_pokemon, null, false);
+                        View view = inflater.inflate(R.layout.cell_view_pokemon, null, false);
                         return new PokemonHolder(view);
                     }
                 });
@@ -100,7 +97,7 @@ public class ListActivity extends BaseActivity implements ListPresenter.View, It
 
     @Override public void onItemClick(@NonNull PokemonModelView item,
                                       @NonNull DefaultViewHolder<PokemonModelView> viewHolder, @NonNull View view) {
-       navigator.navigateToDetail(this, item.getId(), item.getSpriteFront());
+        navigator.navigateToDetail(this, ((PokemonHolder) viewHolder).ivPokemon, item.getId(), item.getSpriteFront());
     }
 
     // ******************************************

@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  */
 
 public class PokemonView extends LinearLayout {
-    @BindView (R.id.view_pokemon_iv_front) ImageView ivPokemon;
+    @BindView (R.id.view_pokemon_iv_front) public ImageView ivPokemon;
     @BindView (R.id.view_pokemon_tv_name) TextView tvName;
     @BindView (R.id.view_pokemon_tv_height) TextView tvHeight;
     @BindView (R.id.view_pokemon_tv_weight) TextView tvWeight;

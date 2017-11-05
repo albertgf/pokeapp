@@ -1,6 +1,7 @@
 package com.albertgf.pokeapp.holder;
 
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,7 +17,7 @@ import com.bumptech.glide.Glide;
 
 public class PokemonHolder extends DefaultViewHolder<PokemonModelView> {
     private TextView tvName;
-    private ImageView ivPokemon;
+    public ImageView ivPokemon;
 
     public PokemonHolder(View view) {
         super(view);
@@ -28,6 +29,7 @@ public class PokemonHolder extends DefaultViewHolder<PokemonModelView> {
     @Override
     public void bindData(@NonNull PokemonModelView data) {
         tvName.setText(data.getName());
+        ViewCompat.setTransitionName(ivPokemon, data.getName());
 
         Glide.with(ivPokemon).load(data.getSpriteFront()).into(ivPokemon);
     }

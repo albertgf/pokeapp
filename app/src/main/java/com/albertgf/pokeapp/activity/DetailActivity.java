@@ -2,8 +2,10 @@ package com.albertgf.pokeapp.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
@@ -25,6 +27,11 @@ import com.albertgf.pokeapp.holder.PokemonHolder;
 import com.albertgf.pokeapp.presenter.DetailPresenter;
 import com.albertgf.pokeapp.presenter.ListPresenter;
 import com.albertgf.pokeapp.view.PokemonView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
@@ -42,9 +49,10 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
     @Inject DetailPresenter presenter;
     private BaseComponent component;
 
-    public static Intent getCallingIntent(Context context, int id, String url) {
+    public static Intent getCallingIntent(Context context, int id, String transitionName, String url) {
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra("id", id);
+        intent.putExtra("transition", transitionName);
         intent.putExtra("url", url);
 
         return intent;
@@ -84,11 +92,32 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
     private void initData() {
         presenter.setPokemonId(getIntent().getExtras().getInt("id"));
 
-        initTransition(getIntent().getExtras().getString("url"));
+        initTransition(getIntent().getExtras().getString("url"), getIntent().getExtras().getString("transition"));
     }
 
-    private void initTransition(String url) {
-        //TODO
+    private void initTransition(String url, String transitionName) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cvPokemon.ivPokemon.setTransitionName(transitionName);
+        }
+
+        Glide.with(this).load(url).listener(new RequestListener() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target target,
+                                        boolean isFirstResource) {
+                supportStartPostponedEnterTransition();
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Object resource, Object model, Target target,
+                                           DataSource dataSource, boolean isFirstResource) {
+                supportStartPostponedEnterTransition();
+                return false;
+            }
+        }).into(cvPokemon.ivPokemon);
+
+
     }
 
     // ******************************************
