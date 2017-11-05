@@ -3,7 +3,7 @@ package com.albertgf.pokeapp.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.albertgf.domain.model.PokemonModelView;
@@ -11,7 +11,7 @@ import com.albertgf.pokeapp.R;
 import com.albertgf.pokeapp.di.components.BaseComponent;
 import com.albertgf.pokeapp.di.components.DaggerBaseComponent;
 import com.albertgf.pokeapp.presenter.MainPresenter;
-import com.bumptech.glide.Glide;
+import com.albertgf.pokeapp.view.PokemonView;
 
 import javax.inject.Inject;
 
@@ -21,7 +21,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View {
 
-    @BindView (R.id.act_main_iv_pokemon) ImageView ivPokemon;
+    @BindView (R.id.act_main_cv_pokemon) PokemonView cvPokemon;
 
     @Inject MainPresenter presenter;
     private BaseComponent component;
@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
 
     @OnClick (R.id.act_main_tv_leave)
     public void onLeaveClick() {
-        // TODO presenter.leavePokemon();
+        presenter.leavePokemon();
     }
 
     @OnClick (R.id.act_main_tv_catch)
@@ -93,7 +93,12 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
     }
 
     @Override public void bindPokemon(PokemonModelView pokemon) {
-        Glide.with(this).load(pokemon.getSprites().getFrontDefault()).into(ivPokemon);
+        cvPokemon.setVisibility(View.VISIBLE);
+        cvPokemon.bindData(pokemon);
+    }
+
+    @Override public void hidePokemon() {
+        cvPokemon.setVisibility(View.GONE);
     }
 
     @Override public void showNotFoundError() {

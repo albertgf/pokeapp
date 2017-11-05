@@ -43,6 +43,7 @@ public class MainPresenter implements Presenter {
 
     public void leavePokemon() {
         pokemon = null;
+        view.hidePokemon();
     }
 
     public void catchPokemon() {
@@ -51,6 +52,7 @@ public class MainPresenter implements Presenter {
 
     public interface View extends PresenterView {
         void bindPokemon(PokemonModelView pokemon);
+        void hidePokemon();
         void showNotFoundError();
     }
 
