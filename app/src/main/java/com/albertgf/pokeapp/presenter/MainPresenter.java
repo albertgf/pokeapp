@@ -55,8 +55,13 @@ public class MainPresenter implements Presenter {
 
     public interface View extends PresenterView {
         void bindPokemon(PokemonModelView pokemon);
+
         void hidePokemon();
+
         void showNotFoundError();
+
+        void showServerError();
+
         void showCatched();
     }
 
@@ -80,6 +85,9 @@ public class MainPresenter implements Presenter {
             switch (api.getHttpCode()) {
                 case CODE_NOT_FOUND:
                     view.showNotFoundError();
+                    return;
+                default:
+                    view.showServerError();
             }
         }
     }

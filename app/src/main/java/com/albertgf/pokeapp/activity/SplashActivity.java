@@ -85,6 +85,7 @@ public class SplashActivity extends BaseActivity implements SplashPresenter.View
     }
 
     @Override public void navigateToGender() {
-        navigator.navigateToGender(this);
+        navigator.navigateToMain(this);
+        // TODO hold screen navigator.navigateToGender(this);
     }
 }
