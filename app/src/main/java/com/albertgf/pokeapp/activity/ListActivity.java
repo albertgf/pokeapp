@@ -35,6 +35,7 @@ import butterknife.OnClick;
 public class ListActivity extends BaseActivity implements ListPresenter.View, ItemClickListener<PokemonModelView> {
 
     @BindView(R.id.rvPokemons) RecyclerView rvPokemons;
+    @BindView(R.id.act_list_tv_empty) TextView tvEmpty;
 
     @Inject ListPresenter presenter;
     private BaseComponent component;
@@ -111,9 +112,9 @@ public class ListActivity extends BaseActivity implements ListPresenter.View, It
     }
 
     @Override public void bindPokemons(List<PokemonModelView> list) {
+        tvEmpty.setVisibility(list.size() <= 0 ? View.VISIBLE : View.GONE);
         adapter.clear();
         adapter.addItems(list);
         adapter.notifyDataSetChanged();
-        Toast.makeText(this, "list: " + list.size(), Toast.LENGTH_SHORT).show();
     }
 }

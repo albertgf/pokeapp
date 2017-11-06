@@ -4,12 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pokeAppPrimary"
     tools:context="com.albertgf.pokeapp.activity.ListActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvPokemons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/act_list_tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:text="you didn't caught\n any pokemon yet"/>
 
 </FrameLayout>
