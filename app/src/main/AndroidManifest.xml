@@ -31,6 +31,10 @@
         <activity android:name=".activity.DetailActivity"
                   android:screenOrientation="portrait"
             />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="571d3711754917917c8704c4b071c3fcd3e9b315" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
